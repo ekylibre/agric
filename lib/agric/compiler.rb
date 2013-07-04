@@ -36,6 +36,7 @@ module Agric
         lib = root.join("lib")
         assets = lib.join("assets")
         compiler_dir = Pathname.new(File.expand_path(__FILE__)).dirname.join("compiler")
+        convert_script = compiler_dir.join("convert.pe")
 
         output_font_file = assets.join("fonts", "#{META[:filename]}.svg")
         font_awesome_dir = Pathname.new(Dir.home).join(".font-awesome")
@@ -81,7 +82,7 @@ module Agric
 
           # FileUtils.cp(font_awesome_dir.join("build", "assets", "font-awesome", "font", "fontawesome-webfont.svg"), awesome_dir.join("font.svg"))
           source = font_awesome_dir.join("src", "assets", "font-awesome", "font", "FontAwesome.otf")
-          command("fontforge -script font-convert.pe #{source.to_s} svg")
+          command("fontforge -script #{convert_script} #{source.to_s} svg")
           interm = source.dirname.join("FontAwesome.svg")
           File.open(interm) do |i|
             doc = Nokogiri::XML(i) do |config|
@@ -174,7 +175,6 @@ module Agric
 
         puts "-" * 80
 
-        convert_script = compiler_dir.join("convert.pe")
 
         # Convert SVG font to all needed format
         command("fontforge -script #{convert_script} #{output_font_file} ttf")
