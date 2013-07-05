@@ -146,14 +146,9 @@ module Agric
         Dir.chdir(glyphs) do
           config["glyphs"] = Dir.glob("*.svg").sort.collect do |cf|
             name = cf.split(/\./).first
-            if reference[name]
-              icons[name] = reference[name]
-            else
-              last = reference.values.sort.last || "efff"
-              icons[name] = last.to_i(16).succ.to_s(16)
-              reference[name] = icons[name]
-            end
-            {"css" => name, "code" => last}
+            icons[name] = reference[name] || (reference.values.sort.last || "efff").to_i(16).succ.to_s(16)
+            reference[name] = icons[name]
+            {"css" => name, "code" => icons[name].to_i(16)}
           end
         end
         
@@ -184,6 +179,7 @@ module Agric
 
         # Write SCSS file to manage list of icons
         File.open(lib.join("agric", "compass", "stylesheets", "agric", "_paths.scss"), "wb") do |f|
+          f.write "/* Auto-generated. Nothing to touch */\n"
           f.write "@font-face {\n"
           f.write "  font-family: '#{META[:family]}';\n"
           f.write "  font-weight: normal;\n"
@@ -196,9 +192,13 @@ module Agric
           f.write "}\n"
         end
 
-        File.open(lib.join("agric", "compass", "stylesheets", "_icons.scss"), "wb") do |f|
+        File.open(lib.join("agric", "compass", "stylesheets", "agric", "_icons.scss"), "wb") do |f|
+          f.write "/* Auto-generated. Nothing to touch */\n"
           for name, code in icons
-            f.write "$agric-icons-#{name}: \"#{code}\";\n"
+            f.write "$agric-icons-#{name}: \"\\#{code}\";\n"
+          end
+          f.write "\n"
+          for name, code in icons
             f.write ".icon-#{name}:before { content: $agric-icons-#{name} };\n"
           end
           # f.write "$agric-icons: (" + icons.collect{|k,v| "(#{k} \"\\#{v}\")"}.join(" ") + ");\n"
