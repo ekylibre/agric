@@ -5,4 +5,4 @@ task :compile do
   Agric::Compiler.compile!
 end
 
-task :build => :compile
+# task :build => :compile
