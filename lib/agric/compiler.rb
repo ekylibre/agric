@@ -140,27 +140,37 @@ module Agric
 
         reference_file = compiler_dir.join('reference.yml')
         reference = YAML.load_file(reference_file)
+        reference = {} unless reference.is_a?(Hash)
 
         icons = {}
 
         Dir.chdir(glyphs) do
-          config["glyphs"] = Dir.glob("*.svg").sort.collect do |cf|
-            name = cf.split(/\./).first
-            icons[name] = reference[name] || (reference.values.sort.last || "efff").to_i(16).succ.to_s(16)
-            reference[name] = icons[name]
-            {"css" => name, "code" => icons[name].to_i(16)}
+          Dir.glob("*.svg").sort.collect do |cf|
+            name = cf.split(/\./).first.to_s
+            unless reference.has_key?(name)
+              reference[name] = (reference.values.sort.last || "efff").to_i(16).succ.to_s(16)
+            end
+            icons[name] = reference[name]
           end
         end
-        
+
         # Removes undefined glyphs from reference
         for ref in reference.keys
           reference.delete(ref) unless icons.keys.include?(ref)
         end
 
         File.open(reference_file, "wb") do |f|
-          f.write reference.to_yaml
+          f.write "# Auto-updated. Nothing to touch.\n"
+          for name, code in reference
+            f.write "'#{name}': '#{code}'\n"
+          end
         end
 
+        # Build glyphs
+        config["glyphs"] = icons.sort{|a,b| a[1] <=> b[1]}.collect do |name, unicode|
+          {"css" => name, "code" => unicode.to_i(16)}
+        end
+        
         File.open(config_file, "wb") do |f|
           f.write config.to_yaml
         end
