@@ -139,6 +139,7 @@ module Agric
         }
 
         reference_file = compiler_dir.join('reference.yml')
+        FileUtils.cp(reference_file, root.join("tmp", "reference-#{Date.today}-#{rand(1000).to_s(36)}.yml"))
         reference = YAML.load_file(reference_file)
         reference = {} unless reference.is_a?(Hash)
 
@@ -202,6 +203,14 @@ module Agric
           f.write "}\n"
         end
 
+        File.open(lib.join("agric", "compass", "stylesheets", "agric", "_list.scss"), "wb") do |f|
+          f.write "/* Auto-generated. Nothing to touch */\n"
+          f.write "$agric-icons: ("
+          f.write icons.map{ |name, code| "(#{name} \"\\#{code}\")" }.join(" ")
+          f.write ")\n"
+        end
+
+
         File.open(lib.join("agric", "compass", "stylesheets", "agric", "_icons.scss"), "wb") do |f|
           f.write "/* Auto-generated. Nothing to touch */\n"
           for name, code in icons
@@ -212,8 +221,6 @@ module Agric
             f.write ".icon-#{name}:before { content: $agric-icons-#{name} };\n"
           end
           # f.write "$agric-icons: (" + icons.collect{|k,v| "(#{k} \"\\#{v}\")"}.join(" ") + ");\n"
-          # f.write "$agric-icons: (" + icons.collect{|k,v| "(#{k} \"\\#{v}\")"}.join(" ") + ");\n"
-          # f.write "$agric-icon-names: (" + icons.keys.join(" ") + ");\n"
           # f.write "@mixin icon-agric(): (" + icons.keys.join(" ") + ");\n"
         end
 
