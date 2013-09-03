@@ -1,4 +1,4 @@
-# Agric
+# Agric [![Build Status](https://travis-ci.org/ekylibre/agric.png)](https://travis-ci.org/ekylibre/agric)
 
 Agriculture-oriented iconic web font.
 
