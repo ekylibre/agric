@@ -33,16 +33,19 @@ module Agric
       }
 
       def compile!(options = {})
-        root = Pathname.new(__FILE__).dirname
+        root = Pathname.new(File.expand_path(__FILE__)).dirname
         sources = root.join("src")
         lib = root.join("lib")
-        assets = lib.join("assets")
-        compiler_dir = Pathname.new(File.expand_path(__FILE__)).dirname.join("compiler")
+        assets = root.join("app", "assets")
+        compiler_dir = root.join("compiler")
         convert_script = compiler_dir.join("convert.pe")
 
         output_font_file = assets.join("fonts", "#{META[:filename]}.svg")
         font_awesome_dir = Pathname.new(Dir.home).join(".font-awesome")
         glyphs = root.join("tmp", "glyphs")
+
+        puts "Compiler dir: #{compiler_dir}"
+        puts "Sources dir:  #{sources}"
 
         # Get latest Font-Awesome
         FileUtils.mkdir_p(font_awesome_dir.dirname)
@@ -141,7 +144,7 @@ module Agric
         }
 
         reference_file = compiler_dir.join('reference.yml')
-        FileUtils.cp(reference_file, root.join("tmp", "reference-#{Date.today}-#{rand(1000).to_s(36)}.yml"))
+        FileUtils.cp(reference_file, root.join("tmp", "reference-#{Time.now.to_i.to_s(36)}.yml"))
         reference = YAML.load_file(reference_file)
         reference = {} unless reference.is_a?(Hash)
 
@@ -207,7 +210,7 @@ module Agric
         command("rm -f #{output_font_file.dirname.join('*.afm')}")
 
         # Write SCSS file to manage list of icons
-        File.open(lib.join("agric", "compass", "stylesheets", "agric", "_paths.scss"), "wb") do |f|
+        File.open(assets.join("stylesheets", "agric", "paths.scss"), "wb") do |f|
           f.write "/* Auto-generated. Nothing to touch */\n"
           f.write "@font-face {\n"
           f.write "  font-family: '#{META[:family]}';\n"
@@ -221,15 +224,14 @@ module Agric
           f.write "}\n"
         end
 
-        File.open(lib.join("agric", "compass", "stylesheets", "agric", "_list.scss"), "wb") do |f|
+        File.open(assets.join("stylesheets", "agric", "list.scss"), "wb") do |f|
           f.write "/* Auto-generated. Nothing to touch */\n"
           f.write "$agric-icons: ("
           f.write icons.map{ |name, code| "(#{name} \"\\#{code}\")" }.join(" ")
           f.write ")\n"
         end
 
-
-        File.open(lib.join("agric", "compass", "stylesheets", "agric", "_icons.scss"), "wb") do |f|
+        File.open(assets.join("stylesheets", "agric", "icons.scss"), "wb") do |f|
           f.write "/* Auto-generated. Nothing to touch */\n"
           for name, code in icons
             f.write "$agric-icons-#{name}: \"\\#{code}\";\n"
