@@ -1,5 +1,5 @@
 require "bundler/gem_tasks"
-require "agric/compiler_tasks"
+require "tasks/compiler"
 require "rake/testtask"
 
 Rake::TestTask.new(:test) do |t|
