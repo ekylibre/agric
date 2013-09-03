@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem "agric", :path => "../"
+gem "agric", :path => "../../"
 gem "railties", :github => "rails/rails", :branch => "4-0-stable"
 gem "sass-rails", :github => "rails/sass-rails", :branch => "master"
