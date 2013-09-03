@@ -6,9 +6,9 @@ Agriculture-oriented iconic web font.
 
 Agric is composed of many fonts. To merge them in one consistent set, many tools are used:
 
-  cd lib/compiler
-  sudo apt-get install nodejs npm fontforge
-  sudo npm install -g svg-font-dump svg-font-create svgo
+    cd lib/compiler
+    sudo apt-get install nodejs npm fontforge
+    npm install svg-font-dump svg-font-create svgo
 
 If you don't have Node JS in your distribution you can compile it easily from its sources.
 

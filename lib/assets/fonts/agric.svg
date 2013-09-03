@@ -4,7 +4,7 @@
   <metadata>Copyright (C) 2013 by Agric</metadata>
   <defs>
     <font id="agric" horiz-adv-x="1000">
-      <font-face font-family="Font Awesome" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150"/>
+      <font-face font-family="Agric" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150"/>
       <missing-glyph horiz-adv-x="1000"/>
       <glyph glyph-name="adjust" unicode="&#xF000;" d="M429 46v607c-167 0-304-136-304-304s136-304 304-304z m429 304c0-237-192-429-429-429s-429 192-429 429 192 429 429 429 429-192 429-429z" horiz-adv-x="857.143"/>
       <glyph glyph-name="adn" unicode="&#xF001;" d="M429 503l112-171h-224z m204-296h52l-256 386-256-386h52l58 89h291z m225 143c0-237-192-429-429-429s-429 192-429 429 192 429 429 429 429-192 429-429z" horiz-adv-x="857.143"/>
