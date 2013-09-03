@@ -180,6 +180,22 @@ module Agric
 
         puts "-" * 80
 
+        f = File.open(output_font_file)
+        doc = Nokogiri::XML(f) do |config|
+          config.nonet.strict.noblanks
+        end
+        f.close
+
+        doc.root.xpath("//font-face[@font-family]").each do |face|
+          face["font-family"] = META[:family]
+        end
+        File.open(output_font_file, "wb") do |f|
+          f.write doc.to_s
+        end
+        
+        puts "-" * 80
+
+
 
         # Convert SVG font to all needed format
         command("fontforge -script #{convert_script} #{output_font_file} ttf")

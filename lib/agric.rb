@@ -13,7 +13,6 @@ module Agric
     root.join("lib", "agric", "compass")
   end
 
-
   autoload :Compiler, 'agric/compiler'
 end
 

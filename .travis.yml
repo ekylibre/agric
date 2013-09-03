@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+gemfile:
+  - Gemfile
+  - test/gemfiles/rails-3.2.gemfile
+  - test/gemfiles/rails-4.0.gemfile
+  - test/gemfiles/rails-master.gemfile
