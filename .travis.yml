@@ -6,4 +6,4 @@ gemfile:
   - Gemfile
   - test/gemfiles/rails-3.2.gemfile
   - test/gemfiles/rails-4.0.gemfile
-  - test/gemfiles/rails-master.gemfile
+  # - test/gemfiles/rails-master.gemfile
