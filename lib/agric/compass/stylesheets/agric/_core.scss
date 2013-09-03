@@ -1,4 +1,4 @@
-/* FONT AWESOME CORE
+/* AGRIC CORE
 * -------------------------- */
 
 [class^="icon-"],
@@ -74,7 +74,7 @@ a {
 .icon-border {
   border: solid 1px $agric-border-color;
   padding: .2em .25em .15em;
-  @include border-radius(3px);
+  @include agric-border-radius(3px);
 }
 
 // Icon Sizes
@@ -84,21 +84,21 @@ a {
   font-size: 2em;
   &.icon-border {
     border-width: 2px;
-    @include border-radius(4px);
+    @include agric-border-radius(4px);
   }
 }
 .icon-3x {
   font-size: 3em;
   &.icon-border {
     border-width: 3px;
-    @include border-radius(5px);
+    @include agric-border-radius(5px);
   }
 }
 .icon-4x {
   font-size: 4em;
   &.icon-border {
     border-width: 4px;
-    @include border-radius(6px);
+    @include agric-border-radius(6px);
   }
 }
 
@@ -106,7 +106,7 @@ a {
   font-size: 5em;
   &.icon-border {
     border-width: 5px;
-    @include border-radius(7px);
+    @include agric-border-radius(7px);
   }
 }
 

@@ -45,13 +45,6 @@ class AgricRailsTest < ActionDispatch::IntegrationTest
     assert_font_defined(response)
   end
 
-  test "helpers should be available in the view" do
-    get "/icons"
-    assert_response :success
-    assert_select "i.icon-flag"
-    assert_select "span.icon-stack"
-  end
-
   private
 
   def clean_sprockets_cache

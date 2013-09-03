@@ -1,6 +1,6 @@
 require "agric/version"
 require "agric/engine" if defined?(::Rails)
-require 'compass'
+# require 'compass'
 require 'pathname'
 
 module Agric
@@ -17,4 +17,4 @@ module Agric
 end
 
 # Compass registration
-Compass::Frameworks.register('agric', :path => Agric.compass_extension_path)
+# Compass::Frameworks.register('agric', :path => Agric.compass_extension_path)
