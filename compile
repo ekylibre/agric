@@ -40,21 +40,25 @@ module Agric
         compiler_dir = root.join("compiler")
         convert_script = compiler_dir.join("convert.pe")
 
+        tag = "4.0.3" # "3.2.1"
         output_font_file = assets.join("fonts", "#{META[:filename]}.svg")
-        font_awesome_dir = Pathname.new(Dir.home).join(".font-awesome")
+        font_awesome_dir = root.join("tmp", "fonts", "awesome-#{tag}")
         glyphs = root.join("tmp", "glyphs")
 
         puts "Compiler dir: #{compiler_dir}"
         puts "Sources dir:  #{sources}"
 
         # Get latest Font-Awesome
-        FileUtils.mkdir_p(font_awesome_dir.dirname)
-        if font_awesome_dir.join(".git").exist?
-          Dir.chdir(font_awesome_dir) do
-            command("git pull")
+        unless File.exist?(font_awesome_dir)
+          FileUtils.mkdir_p(font_awesome_dir.dirname)
+          Dir.chdir(font_awesome_dir.dirname) do
+            unless File.exist?("v#{tag}.tar.gz")
+              command("wget https://github.com/FortAwesome/Font-Awesome/archive/v#{tag}.tar.gz")
+            end
+            # FileUtils.rm_rf(font_awesome_dir.basename)
+            command("tar xzvf v#{tag}.tar.gz")
+            FileUtils.mv("Font-Awesome-#{tag}", font_awesome_dir.basename)
           end
-        else
-          command("git clone git@github.com:FortAwesome/Font-Awesome.git #{font_awesome_dir}")
         end
 
         unless options[:explode].is_a?(FalseClass)
@@ -68,6 +72,13 @@ module Agric
             icons = YAML.load_file(font_awesome_dir.join("src", "icons.yml"))
             # raise icons.inspect
             config = {"glyphs" => icons["icons"].collect{|h| {"css" => h["id"], "from" => "0x" + h["unicode"]} } }
+            for icon in icons["icons"]
+              if icon['aliases']
+                for a in icon['aliases']
+                  config["glyphs"] << {"css" => a ,"from" => "0x" + icon["unicode"] }
+                end
+              end
+            end
             f.write(config.to_yaml)
           end
 
@@ -76,17 +87,22 @@ module Agric
             "_283" => "eraser",
             "_303" => "rss_sign",
             "_312" => "external_link_sign",
-            "_317" => "expand",
+            "_317" => "caret_square_o_right",
             "_329" => "sort_by_alphabet_alt",
             "_334" => "thumbs_up",
             "_335" => "thumbs_down",
             "_366" => "moon",
+            "_372" => "pagelines",
+            "_374" => "arrow_circle_alt_right",
+            "_376" => "caret_square_o_left",
+            "_378" => "wheelchair",
+            "_380" => "try",
             "f0fe" => "plus_sign_alt",
             "f171" => "bitbucket"
           }
 
           # FileUtils.cp(font_awesome_dir.join("build", "assets", "font-awesome", "font", "fontawesome-webfont.svg"), awesome_dir.join("font.svg"))
-          source = font_awesome_dir.join("src", "assets", "font-awesome", "font", "FontAwesome.otf")
+          source = font_awesome_dir.join("src", "assets", "font-awesome", "fonts", "FontAwesome.otf")
           command("fontforge -script #{convert_script} #{source.to_s} svg")
           interm = source.dirname.join("FontAwesome.svg")
           File.open(interm) do |i|
@@ -121,13 +137,25 @@ module Agric
               font_file = font_dir.join("font.svg")
               config_file = font_dir.join("config.yml")
               if font_file.exist? and config_file.exist?
-                command("svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{glyphs} ")
+                if font_fullname =~ /\-awesome$/
+                  command("svg-font-dump -i #{font_file} -o #{glyphs}")
+                  for glyph in YAML.load_file(config_file)['glyphs']
+                    FileUtils.cp(glyphs.join("glyph__#{glyph['from'][2..-1]}.svg"), glyphs.join("#{glyph['css']}.svg"))
+                  end
+                  for f in Dir[glyphs.join("glyph__*.svg")]
+                    FileUtils.rm_rf(f)
+                  end
+                else
+                  command("svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{glyphs}")
+                end
               end
             end
           end
 
         end
 
+
+        FileUtils.rm_rf(glyphs.join("-notdef.svg"))
 
         config_file = compiler_dir.join('config.yml')
         config = {
@@ -136,7 +164,7 @@ module Agric
             "fontname" => META[:name],
             "fullname" => "#{META[:family]} (#{META[:name]})",
             "familyname" => META[:family],
-            "copyright" => "Copyright (C) 2013 by #{META[:family]}",
+            "copyright" => "Copyright (C) 2013-#{Date.today.year} by #{META[:family]}",
             "ascent" => 850,
             "descent" => 150,
             "weight" => "Regular"
@@ -153,6 +181,7 @@ module Agric
         Dir.chdir(glyphs) do
           Dir.glob("*.svg").sort.collect do |cf|
             name = cf.split(/\./).first.to_s
+            next unless name =~ /^[a-z0-9]+((\_|\-)[a-z0-9]+)*$/
             unless reference.has_key?(name)
               reference[name] = (reference.values.sort.last || "efff").to_i(16).succ.to_s(16)
             end
