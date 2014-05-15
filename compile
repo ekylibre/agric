@@ -40,7 +40,7 @@ module Agric
         compiler_dir = root.join("compiler")
         convert_script = compiler_dir.join("convert.pe")
 
-        tag = "4.0.3" # "3.2.1"
+        tag = "4.1.0" # "3.2.1"
         output_font_file = assets.join("fonts", "#{META[:filename]}.svg")
         font_awesome_dir = root.join("tmp", "fonts", "awesome-#{tag}")
         glyphs = root.join("tmp", "glyphs")
