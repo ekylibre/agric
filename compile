@@ -210,6 +210,8 @@ module Agric
           f.write config.to_yaml
         end
 
+        return if ENV["ONLY"] == "explode"
+
         # Recompose font
         command("svg-font-create -c #{config_file} -s #{compiler_dir.join('svgo.yml')} -i #{glyphs} -o #{output_font_file}")
 
@@ -256,7 +258,7 @@ module Agric
         File.open(assets.join("stylesheets", "agric", "list.scss"), "wb") do |f|
           f.write "/* Auto-generated. Nothing to touch */\n"
           f.write "$agric-icons: ("
-          f.write icons.map{ |name, code| "(#{name} \"\\#{code}\")" }.join(" ")
+          f.write icons.map{ |name, code| "(\"#{name}\" \"\\#{code}\")" }.join(" ")
           f.write ")\n"
         end
 
