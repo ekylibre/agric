@@ -18,4 +18,4 @@ test/version_tmp
 tmp
 config.yml
 node_modules
-src/001-awesome
+src/100-awesome
