@@ -5,6 +5,7 @@ require 'yaml'
 require 'nokogiri'
 require 'pathname'
 require 'colored'
+require 'crass'
 require_relative 'lib/agric/version'
 
 module Agric
@@ -43,34 +44,73 @@ module Agric
       puts cmds.to_s.cyan
       system(cmds)
     end
-    
+
+    def download_github_tag(user, repo, tag, dir)
+      puts " * Download #{user}/#{repo} v#{tag}...".yellow
+      FileUtils.mkdir_p(dir.dirname)
+      Dir.chdir(dir.dirname) do
+        unless File.exist?("v#{tag}.tar.gz")
+          command("wget https://github.com/#{user}/#{repo}/archive/v#{tag}.tar.gz")
+        end
+        command("tar xzvf v#{tag}.tar.gz")
+        FileUtils.mv("#{repo}-#{tag}", dir.basename.to_s)
+      end
+    end
+
+    # Normalize font with conversion into proper SVG file
+    def normalize_font(source, destination, options = {})
+      hexa = options[:hexa] || {}
+      interm = source.dirname.join(source.basename(".*").to_s + ".svg")
+      if interm.exist?
+        puts "No conversion needed for #{interm}".white
+      else
+        command("fontforge -quiet -script #{@convert_script} #{source} svg")
+      end
+      i = File.open(interm)
+      doc = Nokogiri::XML(i) do |config|
+        config.nonet.strict.noblanks
+      end
+      i.close
+      doc.root.xpath("//svg:glyph[@d]", SVG_NAMESPACES).each do |glyph|
+        name = glyph.attr("glyph-name")
+        unicode = glyph.attr("unicode").to_s
+        if unicode[0]
+          hex = "%4.4x" % unicode[0].ord
+          name = hexa[hex] if hexa[hex]
+        end
+        if name and name =~ /^[a-z0-9]+((\_|\-)[a-z0-9]+)*$/
+          glyph["glyph-name"] = name.gsub(/[^a-z0-9]+/, '-')
+        else
+          puts "    - weird name (#{unicode.inspect}): #{name.inspect.red} "
+        end
+      end
+      doc.root.default_namespace = SVG_NAMESPACES[:svg]
+      for name, url in SVG_NAMESPACES
+        doc.root.add_namespace(name.to_s, url)
+      end
+      File.open(destination, "wb") do |f|
+        f.write doc.to_s
+      end
+    end    
 
     def prepare_font_awesome(options = {})
       puts "Prepare awesome...".yellow
       tag = options[:tag] || "4.3.0"
-      font_awesome_dir = @root.join("tmp", "fonts", "awesome-#{tag}")
-      awesome_dir = options[:output] || @sources.join("100-awesome")
+      repository_dir = @root.join("tmp", "fonts", "awesome-#{tag}")
+      font_dir = options[:output] || @sources.join("100-awesome")
 
-      # Get latest Font-Awesome
-      unless File.exist?(font_awesome_dir)
-        puts " * Download awesome...".yellow
-        FileUtils.mkdir_p(font_awesome_dir.dirname)
-        Dir.chdir(font_awesome_dir.dirname) do
-          unless File.exist?("v#{tag}.tar.gz")
-            command("wget https://github.com/FortAwesome/Font-Awesome/archive/v#{tag}.tar.gz")
-          end
-          command("tar xzvf v#{tag}.tar.gz")
-          FileUtils.mv("Font-Awesome-#{tag}", font_awesome_dir.basename)
-        end
+      # Get latest source
+      unless File.exist?(repository_dir)
+        download_github_tag("FortAwesome", "Font-Awesome", tag, repository_dir)
       end
 
-      # Normalize Font-Awesome
+      # Normalize 
       puts " * Sets config...".yellow
       hexa = {}
-      FileUtils.rm_rf(awesome_dir)
-      FileUtils.mkdir_p(awesome_dir)
-      File.open(awesome_dir.join("config.yml"), "wb") do |f|
-        icons = YAML.load_file(font_awesome_dir.join("src", "icons.yml"))
+      FileUtils.rm_rf(font_dir)
+      FileUtils.mkdir_p(font_dir)
+      File.open(font_dir.join("config.yml"), "wb") do |f|
+        icons = YAML.load_file(repository_dir.join("src", "icons.yml"))
         # raise icons.inspect
         config = {"glyphs" => icons["icons"].collect{|h| {"css" => h["id"], "from" => "0x" + h["unicode"]} } }
         for icon in icons["icons"]
@@ -86,31 +126,46 @@ module Agric
       end
       
       puts " * Write normalized file...".yellow
-      source = font_awesome_dir.join("src", "assets", "font-awesome", "fonts", "FontAwesome.otf")
-      command("fontforge -quiet -script #{@convert_script} #{source.to_s} svg")
-      interm = source.dirname.join("FontAwesome.svg")
-      i = File.open(interm)
-      doc = Nokogiri::XML(i) do |config|
-        config.nonet.strict.noblanks
+      source = repository_dir.join("src", "assets", "font-awesome", "fonts", "FontAwesome.otf")
+      normalize_font(source, font_dir.join("font.svg"), hexa: hexa)
+    end
+
+    def prepare_font_material(options = {})
+      puts "Prepare material...".yellow
+      tag = options[:tag] || "1.1.1"
+      repository_dir = @root.join("tmp", "fonts", "material-#{tag}")
+      font_dir = options[:output] || @sources.join("099-material")
+      
+      # Get latest source
+      unless File.exist?(repository_dir)
+        download_github_tag("zavoloklom", "material-design-iconic-font", tag, repository_dir)
       end
-      i.close
-      doc.root.xpath("//svg:glyph[@d]", SVG_NAMESPACES).each do |glyph|
-        name = glyph.attr("glyph-name")
-        unicode = glyph.attr("unicode").to_s
-        if unicode[0]
-          hex = "%4.4x" % unicode[0].ord
-          name = hexa[hex]
-        end        
-        puts "    -  weird name: #{name.to_s.red}" unless name =~ /^[a-z0-9]+((\_|\-)[a-z0-9]+)*$/
-        glyph["glyph-name"] = name.gsub(/[^a-z0-9]+/, '-')
+      
+      # Normalize config file
+      puts " * Sets config...".yellow
+      hexa = {}
+      FileUtils.rm_rf(font_dir)
+      FileUtils.mkdir_p(font_dir)
+      File.open(font_dir.join("config.yml"), "wb") do |f|
+        config = {"glyphs" => [] }
+        repository_dir.join("css", "material-design-iconic-font.css")
+        css = Crass.parse(File.read(repository_dir.join("css", "material-design-iconic-font.css").to_s))
+        css.each do |statement|
+          if statement[:node] == :style_rule and selector = statement[:selector]
+            if selector[:value] =~ /^\.md-.*\:before$/
+              name = selector[:tokens][1][:value].gsub(/^md\-/, '')
+              unicode =  statement[:children][1][:value][2..5]
+              config["glyphs"] << {"css" => name, "from" => "0x#{unicode}"}
+              hexa[unicode] = name
+            end
+          end
+        end
+        f.write(config.to_yaml)
       end
-      doc.root.default_namespace = SVG_NAMESPACES[:svg]
-      for name, url in SVG_NAMESPACES
-        doc.root.add_namespace(name.to_s, url)
-      end
-      File.open(awesome_dir.join("font.svg"), "wb") do |f|
-        f.write doc.to_s
-      end
+
+      puts " * Write normalized file...".yellow
+      source = repository_dir.join("fonts", "Material-Design-Iconic-Font.ttf")
+      normalize_font(source, font_dir.join("font.svg"), hexa: hexa)
     end
 
 
@@ -127,25 +182,16 @@ module Agric
           config_file = font_dir.join("config.yml")
           if font_file.exist? and config_file.exist?
             command("svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{@glyphs}")
-            # if font_fullname =~ /\-awesome$/
-            #   command("svg-font-dump -i #{font_file} -o #{@glyphs}")
-            #   for glyph in YAML.load_file(config_file)['glyphs']
-            #     FileUtils.cp(@glyphs.join("glyph__#{glyph['from'][2..-1]}.svg"), @glyphs.join("#{glyph['css']}.svg"))
-            #   end
-            #   for f in Dir[@glyphs.join("glyph__*.svg")]
-            #     FileUtils.rm_rf(f)
-            #   end
-            # else
-            #   command("svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{@glyphs}")
-            # end
           end
         end
       end
+      # Removes weird icons
       Dir.chdir(@glyphs) do
-        Dir.glob("*.svg").sort.collect do |cf|
-          unless cf.split(/\./).first.to_s =~ /^[a-z0-9]+((\_|\-)[a-z0-9]+)*$/
+        Dir.glob("{*,.*}").sort.collect do |cf|
+          unless cf.to_s =~ /\A[a-z0-9]+(\-[a-z0-9]+)*\.svg\z/
+            next if ["..", "."].include? cf
             puts " - " + "Remove #{cf.to_s}".red
-            FileUtils.rm_f(cf)
+            FileUtils.rm_f(cf) 
           end
         end
       end
@@ -156,9 +202,13 @@ module Agric
       puts "Compiler dir: #{@compiler_dir}".yellow
       puts "Sources dir:  #{@sources}".yellow
 
+      prepare_font_material
+      
       prepare_font_awesome
-
+      
       explode_fonts
+
+      return if ENV["ONLY"] == "explode"
       
       config_file = @compiler_dir.join('config.yml')
       config = {
@@ -180,9 +230,8 @@ module Agric
       reference = {} unless reference.is_a?(Hash)
 
       icons = {}
-
       Dir.chdir(@glyphs) do
-        Dir.glob("*.svg").sort.collect do |cf|
+        Dir.glob("*").sort.collect do |cf|
           name = cf.split(/\./).first.to_s
           unless reference.has_key?(name)
             reference[name] = (reference.values.sort.last || "efff").to_i(16).succ.to_s(16)
@@ -211,8 +260,6 @@ module Agric
       File.open(config_file, "wb") do |f|
         f.write config.to_yaml
       end
-
-      return if ENV["ONLY"] == "explode"
 
       # Recompose font
       command("svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
