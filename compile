@@ -95,7 +95,7 @@ module Agric
 
     def prepare_font_awesome(options = {})
       puts "Prepare awesome...".yellow
-      tag = options[:tag] || "4.3.0"
+      tag = options[:tag] || "4.4.0"
       repository_dir = @root.join("tmp", "fonts", "awesome-#{tag}")
       font_dir = options[:output] || @sources.join("100-awesome")
 
