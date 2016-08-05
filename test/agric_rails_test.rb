@@ -23,11 +23,11 @@ class AgricRailsTest < ActionDispatch::IntegrationTest
 
   test "stylesheets contain asset pipeline references to fonts" do
     get "/assets/agric.css"
-    assert_match "/assets/agric.eot",  response.body
-    assert_match "/assets/agric.eot?#iefix", response.body
-    assert_match "/assets/agric.woff", response.body
-    assert_match "/assets/agric.ttf",  response.body
-    assert_match "/assets/agric.svg", response.body
+    assert_match(/\/assets\/agric(\-[0-9a-f]+)?\.eot/,  response.body)
+    assert_match(/\/assets\/agric(\-[0-9a-f]+)?\.eot\?\#iefix/, response.body)
+    assert_match(/\/assets\/agric(\-[0-9a-f]+)?\.woff/, response.body)
+    assert_match(/\/assets\/agric(\-[0-9a-f]+)?\.ttf/,  response.body)
+    assert_match(/\/assets\/agric(\-[0-9a-f]+)?\.svg/, response.body)
   end
 
   test "stylesheet is available in a css sprockets require" do
