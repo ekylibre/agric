@@ -96,7 +96,7 @@ module Agric
       puts 'Prepare awesome...'.yellow
       tag = options[:tag] || '4.6.3'
       repository_dir = @root.join('tmp', 'fonts', "awesome-#{tag}")
-      font_dir = options[:output] || @sources.join('100-awesome')
+      font_dir = options[:output] || @sources.join(options[:source] || '100-awesome')
 
       # Get latest source
       unless File.exist?(repository_dir)
@@ -132,7 +132,7 @@ module Agric
       puts 'Prepare material...'.yellow
       tag = options[:tag] || '2.2.0'
       repository_dir = @root.join('tmp', 'fonts', "material-#{tag}")
-      font_dir = options[:output] || @sources.join('099-material')
+      font_dir = options[:output] || @sources.join(options[:source] || '099-material')
 
       # Get latest source
       unless File.exist?(repository_dir)
@@ -195,9 +195,8 @@ module Agric
       puts "Compiler dir: #{@compiler_dir}".yellow
       puts "Sources dir:  #{@sources}".yellow
 
-      prepare_font_material
-
-      prepare_font_awesome
+      prepare_font_material tag: '2.2.0', source: '099-material'
+      prepare_font_awesome tag: '4.6.3', source: '100-awesome'
 
       explode_fonts
 
