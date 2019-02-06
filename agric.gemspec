@@ -20,10 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake'
-  # spec.add_development_dependency "nokogiri", ">= 1.5.7"
-  # spec.add_development_dependency "activesupport"
 
   spec.add_dependency 'railties', '>= 3.2', '< 5.0'
-  spec.add_dependency 'sass-rails'
-  # spec.add_dependency "compass-rails", ">= 0.12.0"
+  spec.add_dependency 'sassc-rails'
 end
