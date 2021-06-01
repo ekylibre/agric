@@ -193,90 +193,90 @@ module Agric
     end
 
     def compile!
-      puts "Compiler dir: #{@compiler_dir}".yellow
-      puts "Sources dir:  #{@sources}".yellow
-
-      prepare_font_material tag: '2.2.0', source: '099-material'
-      prepare_font_awesome tag: '4.6.3', source: '100-awesome'
-
-      explode_fonts
-
-      return if ENV['ONLY'] == 'explode'
-
-      config_file = @compiler_dir.join('config.yml')
-      config = {
-        'font' => {
-          'version' => META[:version],
-          'fontname' => META[:name],
-          'fullname' => "#{META[:family]} (#{META[:name]})",
-          'familyname' => META[:family],
-          'copyright' => "Copyright (C) 2013-#{Date.today.year} by #{META[:family]}",
-          'ascent' => 850,
-          'descent' => 150,
-          'weight' => 'Regular'
-        }
-      }
-
-      reference_file = @compiler_dir.join('reference.yml')
-      FileUtils.cp(reference_file, @root.join('tmp', "reference-#{Time.now.to_i.to_s(36)}.yml"))
-      reference = YAML.load_file(reference_file)
-      reference = {} unless reference.is_a?(Hash)
-
-      icons = {}
-      Dir.chdir(@glyphs) do
-        Dir.glob('*').sort.collect do |cf|
-          name = cf.split(/\./).first.to_s
-          unless reference.key?(name)
-            reference[name] = (reference.values.sort.last || 'efff').to_i(16).succ.to_s(16)
-          end
-          icons[name] = reference[name]
-        end
-      end
-
-      # Removes undefined glyphs from reference
-      for ref in reference.keys
-        reference.delete(ref) unless icons.keys.include?(ref)
-      end
-
-      File.open(reference_file, 'wb') do |f|
-        f.write "# Auto-updated. Nothing to touch.\n"
-        for name, code in reference
-          f.write "'#{name}': '#{code}'\n"
-        end
-      end
-
-      # Build glyphs
-      config['glyphs'] = icons.sort { |a, b| a[1] <=> b[1] }.collect do |name, unicode|
-        { 'css' => name, 'code' => unicode.to_i(16) }
-      end
-
-      File.open(config_file, 'wb') do |f|
-        f.write config.to_yaml
-      end
+      # puts "Compiler dir: #{@compiler_dir}".yellow
+      # puts "Sources dir:  #{@sources}".yellow
+      #
+      # prepare_font_material tag: '2.2.0', source: '099-material'
+      # prepare_font_awesome tag: '4.6.3', source: '100-awesome'
+      #
+      # explode_fonts
+      #
+      # return if ENV['ONLY'] == 'explode'
+      #
+      # config_file = @compiler_dir.join('config.yml')
+      # config = {
+      #   'font' => {
+      #     'version' => META[:version],
+      #     'fontname' => META[:name],
+      #     'fullname' => "#{META[:family]} (#{META[:name]})",
+      #     'familyname' => META[:family],
+      #     'copyright' => "Copyright (C) 2013-#{Date.today.year} by #{META[:family]}",
+      #     'ascent' => 850,
+      #     'descent' => 150,
+      #     'weight' => 'Regular'
+      #   }
+      # }
+      #
+      # reference_file = @compiler_dir.join('reference.yml')
+      # FileUtils.cp(reference_file, @root.join('tmp', "reference-#{Time.now.to_i.to_s(36)}.yml"))
+      # reference = YAML.load_file(reference_file)
+      # reference = {} unless reference.is_a?(Hash)
+      #
+      # icons = {}
+      # Dir.chdir(@glyphs) do
+      #   Dir.glob('*').sort.collect do |cf|
+      #     name = cf.split(/\./).first.to_s
+      #     unless reference.key?(name)
+      #       reference[name] = (reference.values.sort.last || 'efff').to_i(16).succ.to_s(16)
+      #     end
+      #     icons[name] = reference[name]
+      #   end
+      # end
+      #
+      # # Removes undefined glyphs from reference
+      # for ref in reference.keys
+      #   reference.delete(ref) unless icons.keys.include?(ref)
+      # end
+      #
+      # File.open(reference_file, 'wb') do |f|
+      #   f.write "# Auto-updated. Nothing to touch.\n"
+      #   for name, code in reference
+      #     f.write "'#{name}': '#{code}'\n"
+      #   end
+      # end
+      #
+      # # Build glyphs
+      # config['glyphs'] = icons.sort { |a, b| a[1] <=> b[1] }.collect do |name, unicode|
+      #   { 'css' => name, 'code' => unicode.to_i(16) }
+      # end
+      #
+      # File.open(config_file, 'wb') do |f|
+      #   f.write config.to_yaml
+      # end
 
       # Recompose font
-      command("node_modules/.bin/svgicons2svgfont --fontname=agric -o #{@output_font_file} #{@glyphs}/*.svg")
+      command("node_modules/.bin/svgicons2svgfont --fontname=agric #{@glyphs}/*.svg > #{@output_font_file}")
       # command("node_modules/.bin/svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
 
-      # Adds aliases
-      @aliases.each do |name, original|
-        icons[name] ||= icons[original]
-      end
-
-      puts 'Update font.svg'.yellow
-
-      f = File.open(@output_font_file)
-      doc = Nokogiri::XML(f) do |config|
-        config.nonet.strict.noblanks
-      end
-      f.close
-
-      doc.root.xpath('//font-face[@font-family]').each do |face|
-        face['font-family'] = META[:family]
-      end
-      File.open(@output_font_file, 'wb') do |f|
-        f.write doc.to_s
-      end
+      # # Adds aliases
+      # @aliases.each do |name, original|
+      #   icons[name] ||= icons[original]
+      # end
+      #
+      # puts 'Update font.svg'.yellow
+      #
+      # f = File.open(@output_font_file)
+      # doc = Nokogiri::XML(f) do |config|
+      #   config.nonet.strict.noblanks
+      # end
+      # f.close
+      #
+      # doc.root.xpath('//font-face[@font-family]').each do |face|
+      #   face['font-family'] = META[:family]
+      # end
+      # File.open(@output_font_file, 'wb') do |f|
+      #   f.write doc.to_s
+      # end
 
       puts 'Export font in other formats...'.yellow
 
@@ -286,44 +286,44 @@ module Agric
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} eot")
       command("rm -f #{@output_font_file.dirname.join('*.afm')}")
 
-      puts 'Write paths stylesheet...'.yellow
-
-      # Write SCSS file to manage list of icons
-      File.open(@assets.join('stylesheets', 'agric', 'paths.scss'), 'wb') do |f|
-        f.write "/* Auto-generated. Nothing to touch */\n"
-        f.write "@font-face {\n"
-        f.write "  font-family: '#{META[:family]}';\n"
-        f.write "  font-weight: normal;\n"
-        f.write "  font-style: normal;\n"
-        f.write "  src: font-url('#{META[:filename]}.eot?v=#{META[:version]}');\n"
-        f.write "  src: font-url('#{META[:filename]}.eot?#iefix&v=#{META[:version]}') format('embedded-opentype'),\n"
-        f.write "    font-url('#{META[:filename]}.woff?v=#{META[:version]}') format('woff'),\n"
-        f.write "    font-url('#{META[:filename]}.ttf?v=#{META[:version]}') format('truetype'),\n"
-        f.write "    font-url('#{META[:filename]}.svg?v=#{META[:version]}') format('svg');\n"
-        f.write "}\n"
-      end
-
-      puts 'Write list stylesheet...'.yellow
-      File.open(@assets.join('stylesheets', 'agric', 'list.scss'), 'wb') do |f|
-        f.write "/* Auto-generated. Nothing to touch */\n"
-        f.write "$agric-icons: (\n"
-        icons.sort.each do |name, code|
-          f.write "  (\"#{name}\" \"\\#{code}\")\n"
-        end
-        f.write ")\n"
-      end
-
-      puts 'Write icons stylesheet...'.yellow
-      File.open(@assets.join('stylesheets', 'agric', 'icons.scss'), 'wb') do |f|
-        f.write "/* Auto-generated. Nothing to touch */\n"
-        for name, code in icons.sort
-          f.write "$agric-icons-#{name}: \"\\#{code}\";\n"
-        end
-        f.write "\n"
-        for name, code in icons.sort
-          f.write ".icon-#{name}:before { content: $agric-icons-#{name} };\n"
-        end
-      end
+      # puts 'Write paths stylesheet...'.yellow
+      #
+      # # Write SCSS file to manage list of icons
+      # File.open(@assets.join('stylesheets', 'agric', 'paths.scss'), 'wb') do |f|
+      #   f.write "/* Auto-generated. Nothing to touch */\n"
+      #   f.write "@font-face {\n"
+      #   f.write "  font-family: '#{META[:family]}';\n"
+      #   f.write "  font-weight: normal;\n"
+      #   f.write "  font-style: normal;\n"
+      #   f.write "  src: font-url('#{META[:filename]}.eot?v=#{META[:version]}');\n"
+      #   f.write "  src: font-url('#{META[:filename]}.eot?#iefix&v=#{META[:version]}') format('embedded-opentype'),\n"
+      #   f.write "    font-url('#{META[:filename]}.woff?v=#{META[:version]}') format('woff'),\n"
+      #   f.write "    font-url('#{META[:filename]}.ttf?v=#{META[:version]}') format('truetype'),\n"
+      #   f.write "    font-url('#{META[:filename]}.svg?v=#{META[:version]}') format('svg');\n"
+      #   f.write "}\n"
+      # end
+      #
+      # puts 'Write list stylesheet...'.yellow
+      # File.open(@assets.join('stylesheets', 'agric', 'list.scss'), 'wb') do |f|
+      #   f.write "/* Auto-generated. Nothing to touch */\n"
+      #   f.write "$agric-icons: (\n"
+      #   icons.sort.each do |name, code|
+      #     f.write "  (\"#{name}\" \"\\#{code}\")\n"
+      #   end
+      #   f.write ")\n"
+      # end
+      #
+      # puts 'Write icons stylesheet...'.yellow
+      # File.open(@assets.join('stylesheets', 'agric', 'icons.scss'), 'wb') do |f|
+      #   f.write "/* Auto-generated. Nothing to touch */\n"
+      #   for name, code in icons.sort
+      #     f.write "$agric-icons-#{name}: \"\\#{code}\";\n"
+      #   end
+      #   f.write "\n"
+      #   for name, code in icons.sort
+      #     f.write ".icon-#{name}:before { content: $agric-icons-#{name} };\n"
+      #   end
+      # end
 
       puts 'Finished!'.green
     end
