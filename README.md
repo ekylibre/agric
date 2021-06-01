@@ -6,9 +6,9 @@ Agriculture-oriented iconic web font. Based on Font Awesome 4.
 
 Agric is composed of many fonts. To merge them in one consistent set, many tools are used:
 
-    cd compiler
     sudo apt-get install nodejs npm fontforge
     yarn install
+    ./compile
 
 If you don't have Node JS in your distribution you can compile it easily from its sources.
 

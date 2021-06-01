@@ -176,7 +176,7 @@ module Agric
           font_file = font_dir.join('font.svg')
           config_file = font_dir.join('config.yml')
           if font_file.exist? && config_file.exist?
-            command("svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{@glyphs}")
+            command("node_modules/.bin/svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{@glyphs}")
           end
         end
       end
@@ -254,7 +254,7 @@ module Agric
       end
 
       # Recompose font
-      command("svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
+      command("node_modules/.bin/svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
 
       # Adds aliases
       @aliases.each do |name, original|
