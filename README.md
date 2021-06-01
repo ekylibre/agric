@@ -8,8 +8,7 @@ Agric is composed of many fonts. To merge them in one consistent set, many tools
 
     cd compiler
     sudo apt-get install nodejs npm fontforge
-    sudo npm install -g svg-font-dump svg-font-create svgo@0.4.4
-    npm install svg-font-dump svg-font-create svgo@0.4.4
+    yarn install
 
 If you don't have Node JS in your distribution you can compile it easily from its sources.
 
@@ -26,4 +25,3 @@ And then execute:
 Or install it yourself as:
 
     $ gem install agric
-
