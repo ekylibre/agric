@@ -255,7 +255,8 @@ module Agric
       end
 
       # Recompose font
-      command("node_modules/.bin/svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
+      command("node_modules/.bin/svgicons2svgfont --fontname=agric -o #{@output_font_file} #{@glyphs}/*.svg")
+      # command("node_modules/.bin/svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
 
       # Adds aliases
       @aliases.each do |name, original|
