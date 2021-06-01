@@ -6,6 +6,7 @@ require 'nokogiri'
 require 'pathname'
 require 'colored'
 require 'crass'
+require 'date'
 require_relative 'lib/agric/version'
 
 module Agric
