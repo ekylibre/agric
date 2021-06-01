@@ -254,9 +254,15 @@ module Agric
       #   f.write config.to_yaml
       # end
 
+      icons = @glyphs.glob('*.svg').map do |p|
+        parts = p.basename('.svg').to_s.split('-')
+        [parts[1..].join('-'), parts[0].gsub(/\Au/, '')]
+      end.to_h
+
       # Recompose font
       command("node_modules/.bin/svgicons2svgfont --fontname=agric #{@glyphs}/*.svg > #{@output_font_file}")
       # command("node_modules/.bin/svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
+
 
       # # Adds aliases
       # @aliases.each do |name, original|
@@ -286,44 +292,44 @@ module Agric
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} eot")
       command("rm -f #{@output_font_file.dirname.join('*.afm')}")
 
-      # puts 'Write paths stylesheet...'.yellow
-      #
-      # # Write SCSS file to manage list of icons
-      # File.open(@assets.join('stylesheets', 'agric', 'paths.scss'), 'wb') do |f|
-      #   f.write "/* Auto-generated. Nothing to touch */\n"
-      #   f.write "@font-face {\n"
-      #   f.write "  font-family: '#{META[:family]}';\n"
-      #   f.write "  font-weight: normal;\n"
-      #   f.write "  font-style: normal;\n"
-      #   f.write "  src: font-url('#{META[:filename]}.eot?v=#{META[:version]}');\n"
-      #   f.write "  src: font-url('#{META[:filename]}.eot?#iefix&v=#{META[:version]}') format('embedded-opentype'),\n"
-      #   f.write "    font-url('#{META[:filename]}.woff?v=#{META[:version]}') format('woff'),\n"
-      #   f.write "    font-url('#{META[:filename]}.ttf?v=#{META[:version]}') format('truetype'),\n"
-      #   f.write "    font-url('#{META[:filename]}.svg?v=#{META[:version]}') format('svg');\n"
-      #   f.write "}\n"
-      # end
-      #
-      # puts 'Write list stylesheet...'.yellow
-      # File.open(@assets.join('stylesheets', 'agric', 'list.scss'), 'wb') do |f|
-      #   f.write "/* Auto-generated. Nothing to touch */\n"
-      #   f.write "$agric-icons: (\n"
-      #   icons.sort.each do |name, code|
-      #     f.write "  (\"#{name}\" \"\\#{code}\")\n"
-      #   end
-      #   f.write ")\n"
-      # end
-      #
-      # puts 'Write icons stylesheet...'.yellow
-      # File.open(@assets.join('stylesheets', 'agric', 'icons.scss'), 'wb') do |f|
-      #   f.write "/* Auto-generated. Nothing to touch */\n"
-      #   for name, code in icons.sort
-      #     f.write "$agric-icons-#{name}: \"\\#{code}\";\n"
-      #   end
-      #   f.write "\n"
-      #   for name, code in icons.sort
-      #     f.write ".icon-#{name}:before { content: $agric-icons-#{name} };\n"
-      #   end
-      # end
+      puts 'Write paths stylesheet...'.yellow
+
+      # Write SCSS file to manage list of icons
+      File.open(@assets.join('stylesheets', 'agric', 'paths.scss'), 'wb') do |f|
+        f.write "/* Auto-generated. Nothing to touch */\n"
+        f.write "@font-face {\n"
+        f.write "  font-family: '#{META[:family]}';\n"
+        f.write "  font-weight: normal;\n"
+        f.write "  font-style: normal;\n"
+        f.write "  src: font-url('#{META[:filename]}.eot?v=#{META[:version]}');\n"
+        f.write "  src: font-url('#{META[:filename]}.eot?#iefix&v=#{META[:version]}') format('embedded-opentype'),\n"
+        f.write "    font-url('#{META[:filename]}.woff?v=#{META[:version]}') format('woff'),\n"
+        f.write "    font-url('#{META[:filename]}.ttf?v=#{META[:version]}') format('truetype'),\n"
+        f.write "    font-url('#{META[:filename]}.svg?v=#{META[:version]}') format('svg');\n"
+        f.write "}\n"
+      end
+
+      puts 'Write list stylesheet...'.yellow
+      File.open(@assets.join('stylesheets', 'agric', 'list.scss'), 'wb') do |f|
+        f.write "/* Auto-generated. Nothing to touch! */\n"
+        f.write "$agric-icons: (\n"
+        icons.sort.each do |name, code|
+          f.write "  (\"#{name}\" \"\\#{code}\")\n"
+        end
+        f.write ")\n"
+      end
+
+      puts 'Write icons stylesheet...'.yellow
+      File.open(@assets.join('stylesheets', 'agric', 'icons.scss'), 'wb') do |f|
+        f.write "/* Auto-generated. Nothing to touch! */\n"
+        for name, code in icons.sort
+          f.write "$agric-icons-#{name}: \"\\#{code}\";\n"
+        end
+        f.write "\n"
+        for name, code in icons.sort
+          f.write ".icon-#{name}:before { content: $agric-icons-#{name} };\n"
+        end
+      end
 
       puts 'Finished!'.green
     end
