@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "svg-font-create": "^0.0.5",
+    "svg-font-dump": "^0.1.0"
+  }
+}
