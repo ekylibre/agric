@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "svg-font-create": "^0.0.5",
+    "svg-font-dump": "^0.1.0",
+    "svgicons2svgfont": "^10.0.3"
+  },
+  "resolutions": {
+    "svgo": "2.3.0"
+  }
+}

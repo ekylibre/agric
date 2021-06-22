@@ -6,12 +6,17 @@ Agriculture-oriented iconic web font. Based on Font Awesome 4.
 
 Agric is composed of many fonts. To merge them in one consistent set, many tools are used:
 
-    cd compiler
     sudo apt-get install nodejs npm fontforge
-    sudo npm install -g svg-font-dump svg-font-create svgo@0.4.4
-    npm install svg-font-dump svg-font-create svgo@0.4.4
+    yarn install
+    ./compile
 
 If you don't have Node JS in your distribution you can compile it easily from its sources.
+
+## Add an icon
+
+1 - Make your svg in /glyphs with correct name like 'uf952-cow.svg'
+
+2 - Launch ./compile
 
 ## Installation
 
@@ -26,4 +31,3 @@ And then execute:
 Or install it yourself as:
 
     $ gem install agric
-

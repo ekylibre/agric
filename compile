@@ -6,6 +6,7 @@ require 'nokogiri'
 require 'pathname'
 require 'colored'
 require 'crass'
+require 'date'
 require_relative 'lib/agric/version'
 
 module Agric
@@ -176,7 +177,7 @@ module Agric
           font_file = font_dir.join('font.svg')
           config_file = font_dir.join('config.yml')
           if font_file.exist? && config_file.exist?
-            command("svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{@glyphs}")
+            command("node_modules/.bin/svg-font-dump -n -c #{config_file} -f -i #{font_file} -o #{@glyphs}")
           end
         end
       end
@@ -191,90 +192,106 @@ module Agric
       end
     end
 
+    # export to PNG with imagemagick in tmp/png folder
+    def export_png(icon_size = 200)
+      @glyphs.glob('*.svg').map do |p|
+        # puts p.dirname.inspect.yellow
+        # puts p.basename.inspect.red
+        # puts p.basename('.svg').inspect.yellow
+        png_file = @root.join('tmp', 'png', p.basename('.svg').to_s + '.png')
+        command("convert -background none -size #{icon_size}x#{icon_size} #{p} #{png_file}")
+      end
+    end
+
     def compile!
-      puts "Compiler dir: #{@compiler_dir}".yellow
-      puts "Sources dir:  #{@sources}".yellow
+      # puts "Compiler dir: #{@compiler_dir}".yellow
+      # puts "Sources dir:  #{@sources}".yellow
+      #
+      # prepare_font_material tag: '2.2.0', source: '099-material'
+      # prepare_font_awesome tag: '4.6.3', source: '100-awesome'
+      #
+      # explode_fonts
+      #
+      # return if ENV['ONLY'] == 'explode'
+      #
+      # config_file = @compiler_dir.join('config.yml')
+      # config = {
+      #   'font' => {
+      #     'version' => META[:version],
+      #     'fontname' => META[:name],
+      #     'fullname' => "#{META[:family]} (#{META[:name]})",
+      #     'familyname' => META[:family],
+      #     'copyright' => "Copyright (C) 2013-#{Date.today.year} by #{META[:family]}",
+      #     'ascent' => 850,
+      #     'descent' => 150,
+      #     'weight' => 'Regular'
+      #   }
+      # }
+      #
+      # reference_file = @compiler_dir.join('reference.yml')
+      # FileUtils.cp(reference_file, @root.join('tmp', "reference-#{Time.now.to_i.to_s(36)}.yml"))
+      # reference = YAML.load_file(reference_file)
+      # reference = {} unless reference.is_a?(Hash)
+      #
+      # icons = {}
+      # Dir.chdir(@glyphs) do
+      #   Dir.glob('*').sort.collect do |cf|
+      #     name = cf.split(/\./).first.to_s
+      #     unless reference.key?(name)
+      #       reference[name] = (reference.values.sort.last || 'efff').to_i(16).succ.to_s(16)
+      #     end
+      #     icons[name] = reference[name]
+      #   end
+      # end
+      #
+      # # Removes undefined glyphs from reference
+      # for ref in reference.keys
+      #   reference.delete(ref) unless icons.keys.include?(ref)
+      # end
+      #
+      # File.open(reference_file, 'wb') do |f|
+      #   f.write "# Auto-updated. Nothing to touch.\n"
+      #   for name, code in reference
+      #     f.write "'#{name}': '#{code}'\n"
+      #   end
+      # end
+      #
+      # # Build glyphs
+      # config['glyphs'] = icons.sort { |a, b| a[1] <=> b[1] }.collect do |name, unicode|
+      #   { 'css' => name, 'code' => unicode.to_i(16) }
+      # end
+      #
+      # File.open(config_file, 'wb') do |f|
+      #   f.write config.to_yaml
+      # end
 
-      prepare_font_material tag: '2.2.0', source: '099-material'
-      prepare_font_awesome tag: '4.6.3', source: '100-awesome'
-
-      explode_fonts
-
-      return if ENV['ONLY'] == 'explode'
-
-      config_file = @compiler_dir.join('config.yml')
-      config = {
-        'font' => {
-          'version' => META[:version],
-          'fontname' => META[:name],
-          'fullname' => "#{META[:family]} (#{META[:name]})",
-          'familyname' => META[:family],
-          'copyright' => "Copyright (C) 2013-#{Date.today.year} by #{META[:family]}",
-          'ascent' => 850,
-          'descent' => 150,
-          'weight' => 'Regular'
-        }
-      }
-
-      reference_file = @compiler_dir.join('reference.yml')
-      FileUtils.cp(reference_file, @root.join('tmp', "reference-#{Time.now.to_i.to_s(36)}.yml"))
-      reference = YAML.load_file(reference_file)
-      reference = {} unless reference.is_a?(Hash)
-
-      icons = {}
-      Dir.chdir(@glyphs) do
-        Dir.glob('*').sort.collect do |cf|
-          name = cf.split(/\./).first.to_s
-          unless reference.key?(name)
-            reference[name] = (reference.values.sort.last || 'efff').to_i(16).succ.to_s(16)
-          end
-          icons[name] = reference[name]
-        end
-      end
-
-      # Removes undefined glyphs from reference
-      for ref in reference.keys
-        reference.delete(ref) unless icons.keys.include?(ref)
-      end
-
-      File.open(reference_file, 'wb') do |f|
-        f.write "# Auto-updated. Nothing to touch.\n"
-        for name, code in reference
-          f.write "'#{name}': '#{code}'\n"
-        end
-      end
-
-      # Build glyphs
-      config['glyphs'] = icons.sort { |a, b| a[1] <=> b[1] }.collect do |name, unicode|
-        { 'css' => name, 'code' => unicode.to_i(16) }
-      end
-
-      File.open(config_file, 'wb') do |f|
-        f.write config.to_yaml
-      end
+      icons = @glyphs.glob('*.svg').map do |p|
+        parts = p.basename('.svg').to_s.split('-')
+        [parts[1..].join('-'), parts[0].gsub(/\Au/, '')]
+      end.to_h
 
       # Recompose font
-      command("svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
-
-      # Adds aliases
-      @aliases.each do |name, original|
-        icons[name] ||= icons[original]
-      end
-
-      puts 'Update font.svg'.yellow
-
-      f = File.open(@output_font_file)
-      doc = Nokogiri::XML(f) do |config|
-        config.nonet.strict.noblanks
-      end
-      f.close
-
-      doc.root.xpath('//font-face[@font-family]').each do |face|
-        face['font-family'] = META[:family]
-      end
-      File.open(@output_font_file, 'wb') do |f|
-        f.write doc.to_s
-      end
+      command("node_modules/.bin/svgicons2svgfont --fontname=agric #{@glyphs}/*.svg > #{@output_font_file}")
+      # command("node_modules/.bin/svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
+      # # Adds aliases
+      # @aliases.each do |name, original|
+      #   icons[name] ||= icons[original]
+      # end
+      #
+      # puts 'Update font.svg'.yellow
+      #
+      # f = File.open(@output_font_file)
+      # doc = Nokogiri::XML(f) do |config|
+      #   config.nonet.strict.noblanks
+      # end
+      # f.close
+      #
+      # doc.root.xpath('//font-face[@font-family]').each do |face|
+      #   face['font-family'] = META[:family]
+      # end
+      # File.open(@output_font_file, 'wb') do |f|
+      #   f.write doc.to_s
+      # end
 
       puts 'Export font in other formats...'.yellow
 
@@ -283,6 +300,7 @@ module Agric
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} woff")
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} eot")
       command("rm -f #{@output_font_file.dirname.join('*.afm')}")
+      export_png
 
       puts 'Write paths stylesheet...'.yellow
 
@@ -303,7 +321,7 @@ module Agric
 
       puts 'Write list stylesheet...'.yellow
       File.open(@assets.join('stylesheets', 'agric', 'list.scss'), 'wb') do |f|
-        f.write "/* Auto-generated. Nothing to touch */\n"
+        f.write "/* Auto-generated. Nothing to touch! */\n"
         f.write "$agric-icons: (\n"
         icons.sort.each do |name, code|
           f.write "  (\"#{name}\" \"\\#{code}\")\n"
@@ -313,7 +331,7 @@ module Agric
 
       puts 'Write icons stylesheet...'.yellow
       File.open(@assets.join('stylesheets', 'agric', 'icons.scss'), 'wb') do |f|
-        f.write "/* Auto-generated. Nothing to touch */\n"
+        f.write "/* Auto-generated. Nothing to touch! */\n"
         for name, code in icons.sort
           f.write "$agric-icons-#{name}: \"\\#{code}\";\n"
         end
