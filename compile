@@ -297,9 +297,14 @@ module Agric
 
       # Convert SVG font to all needed format
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} ttf")
+      # TODO the command woff doesnt work anymore
+      command("fontforge -quiet -script #{@convert_script} #{@output_font_file} woff2")
+      # if doesn't work, try https://www.aconvert.com/file.php
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} woff")
+
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} eot")
       command("rm -f #{@output_font_file.dirname.join('*.afm')}")
+      puts 'Export PNG in tmp/pngs dir...'.yellow
       export_png
 
       puts 'Write paths stylesheet...'.yellow
