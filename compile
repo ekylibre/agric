@@ -271,7 +271,7 @@ module Agric
       end.to_h
 
       # Recompose font
-      command("node_modules/.bin/svgicons2svgfont --fontname=agric #{@glyphs}/*.svg > #{@output_font_file}")
+      command("node_modules/.bin/svgicons2svgfont -r --fontname=agric #{@glyphs}/*.svg > #{@output_font_file}")
       # command("node_modules/.bin/svg-font-create -c #{config_file} -s #{@compiler_dir.join('svgo.yml')} -i #{@glyphs} -o #{@output_font_file}")
       # # Adds aliases
       # @aliases.each do |name, original|
@@ -293,13 +293,18 @@ module Agric
       #   f.write doc.to_s
       # end
 
-      puts 'Export font in other formats...'.yellow
+      puts 'Export font in TTF, WOFF, WOFF2 and EOT formats...'.yellow
 
       # Convert SVG font to all needed format
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} ttf")
+      # if doesn't work, try https://www.aconvert.com/file.php
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} woff")
+
+      command("fontforge -quiet -script #{@convert_script} #{@output_font_file} woff2")
+
       command("fontforge -quiet -script #{@convert_script} #{@output_font_file} eot")
       command("rm -f #{@output_font_file.dirname.join('*.afm')}")
+      puts 'Export font in PNG in format (tmp/pngs)...'.yellow
       export_png
 
       puts 'Write paths stylesheet...'.yellow
