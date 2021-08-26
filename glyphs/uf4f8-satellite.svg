@@ -1,1 +1,57 @@
-<svg height="1000" width="1000.0" xmlns="http://www.w3.org/2000/svg"><path d="m791.7 125h-583.4c-46 0-83.3 37.3-83.3 83.3v583.4c0 46 37.3 83.3 83.3 83.3h583.4c46 0 83.3-37.3 83.3-83.3v-583.4c0-46-37.3-83.3-83.3-83.3z m-583.4 82.9h125c0 69-56 125.4-125 125.4v-125.4z m0 292.1v-83.3c115 0 208.4-93.8 208.4-208.8h83.3c0 161.1-130.6 292.1-291.7 292.1z m0 250l145.9-187.5 104.1 125.2 145.9-187.7 187.5 250h-583.4z" /></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1000 1000"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="satellite.svg"
+   width="1000"
+   height="1000"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="255.4156"
+     inkscape:cy="255.99679"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+  <path
+     d="M 979.66275,606.35322 791.17208,794.8679 a 62.141914,62.141914 0 0 1 -87.72676,0 l -156.56781,-156.74528 -19.28162,19.3114 a 371.43712,371.43712 0 0 1 -10.53938,328.47672 c -8.77268,16.57016 -31.95327,18.70226 -45.23411,5.45227 L 262.25285,781.80073 227.55814,816.49425 c 1.37072,5.08675 3.13745,9.74707 3.13745,15.19936 a 62.383473,62.383473 0 1 1 -62.38347,-62.38133 c 5.45246,0 10.11294,1.76665 15.19988,3.13733 L 218.20671,737.75609 8.6372447,528.19379 C -4.6130917,514.9134 -2.4808946,491.91637 14.089706,482.96124 A 371.47256,371.47256 0 0 1 342.57767,472.42218 L 361.67651,453.32397 205.13907,296.57869 a 62.376767,62.376767 0 0 1 0,-87.90651 L 393.66,20.157555 A 61.644646,61.644646 0 0 1 437.5236,2.0340656 62.371914,62.371914 0 0 1 481.56974,20.157555 L 638.13763,176.68962 731.31685,83.330824 a 65.506131,65.506131 0 0 1 92.60048,0 l 92.60045,92.597296 a 65.555991,65.555991 0 0 1 0,92.59728 l -93.17922,93.3588 156.53741,156.74536 a 61.962339,61.962339 0 0 1 -0.21322,87.72366 z M 427.95893,386.86102 571.85519,242.9697 437.52352,108.67312 293.65773,252.53398 Z M 891.35723,562.49133 757.0561,428.16434 613.15995,572.05566 747.49161,706.35225 Z"
+     id="path2"
+     inkscape:connector-curvature="0"
+     style="stroke-width:1.94915211" />
+</svg>
