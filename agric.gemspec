@@ -21,6 +21,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", ">= 2.2.10"
   spec.add_development_dependency 'rake'
 
-  spec.add_dependency 'railties', '>= 3.2', '< 6'
-  spec.add_dependency 'sassc-rails', '~> 2'
+  spec.add_dependency 'railties', '>= 3.2', '< 9'
+  # NOTE: no SCSS compiler dependency on purpose.
+  # - sprockets era: apps provide sassc-rails (or dartsass-rails)
+  # - Rails 7.1+/8.x era (propshaft, cssbundling, dartsass): apps compile
+  #   agric.scss themselves. The generated SCSS uses plain url() so it
+  #   compiles with any Sass implementation (no sprockets helpers).
 end

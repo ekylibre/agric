@@ -199,7 +199,7 @@ module Agric
         # puts p.basename.inspect.red
         # puts p.basename('.svg').inspect.yellow
         png_file = @root.join('tmp', 'png', p.basename('.svg').to_s + '.png')
-        command("convert -background none -size #{icon_size}x#{icon_size} #{p} #{png_file}")
+        command("convert -background none -resize #{icon_size}x#{icon_size} #{p} #{png_file}")
       end
     end
 
@@ -310,17 +310,21 @@ module Agric
       puts 'Write paths stylesheet...'.yellow
 
       # Write SCSS file to manage list of icons
+      # NOTE: plain url() on purpose (no sprockets font-url() helper) so the
+      # stylesheet compiles with any Sass implementation (sassc, dart-sass)
+      # and works with both Sprockets and Propshaft (both rewrite relative
+      # url() to digested asset URLs). Cache-busting relies on digests, hence
+      # no ?v= query strings.
       File.open(@assets.join('stylesheets', 'agric', 'paths.scss'), 'wb') do |f|
         f.write "/* Auto-generated. Nothing to touch */\n"
         f.write "@font-face {\n"
         f.write "  font-family: '#{META[:family]}';\n"
         f.write "  font-weight: normal;\n"
         f.write "  font-style: normal;\n"
-        f.write "  src: font-url('#{META[:filename]}.eot?v=#{META[:version]}');\n"
-        f.write "  src: font-url('#{META[:filename]}.eot?#iefix&v=#{META[:version]}') format('embedded-opentype'),\n"
-        f.write "    font-url('#{META[:filename]}.woff?v=#{META[:version]}') format('woff'),\n"
-        f.write "    font-url('#{META[:filename]}.ttf?v=#{META[:version]}') format('truetype'),\n"
-        f.write "    font-url('#{META[:filename]}.svg?v=#{META[:version]}') format('svg');\n"
+        f.write "  src: url('agric.woff2') format('woff2'),\n"
+        f.write "    url('agric.woff') format('woff'),\n"
+        f.write "    url('agric.ttf') format('truetype'),\n"
+        f.write "    url('agric.svg') format('svg');\n"
         f.write "}\n"
       end
 
