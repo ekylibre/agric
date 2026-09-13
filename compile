@@ -203,6 +203,32 @@ module Agric
       end
     end
 
+    # Update README.md icons preview (auto-generated grid of glyphs/*.svg
+    # so the gallery stays visible on GitHub). Idempotent: the section
+    # between <!-- ICONS:START --> and <!-- ICONS:END --> is replaced.
+    def update_readme!(icons, columns = 6)
+      puts 'Update README icons preview...'.yellow
+      readme_file = @root.join('README.md')
+      cells = icons.sort.map do |name, code|
+        file = "u#{code}-#{name}.svg".gsub(' ', '%20')
+        %(<img src="glyphs/#{file}" width="32" height="32" alt="#{name}" /><br /><sub>#{name}</sub>)
+      end
+      header = '| ' + ([' ']*columns).join(' | ') + ' |'
+      separator = '|' + (' --- |' * columns)
+      rows = cells.each_slice(columns).map { |slice| '| ' + slice.join(' | ') + ' |' }
+      gallery = (['<!-- ICONS:START -->', header, separator] + rows + ['<!-- ICONS:END -->']).join("\n")
+      section = ['## Icons preview', '',
+                 "_#{icons.size} icons auto-generated from `glyphs/`. Do not edit by hand, run `./compile` instead._",
+                 '', gallery, ''].join("\n")
+      text = File.read(readme_file.to_s)
+      if text =~ /<!-- ICONS:START -->.*<!-- ICONS:END -->/m
+        text = text.sub(/<!-- ICONS:START -->.*<!-- ICONS:END -->/m, gallery)
+      else
+        text = text.sub("## Installation", section + "\n## Installation")
+      end
+      File.open(readme_file, 'wb') { |f| f.write(text) }
+    end
+
     def compile!
       # puts "Compiler dir: #{@compiler_dir}".yellow
       # puts "Sources dir:  #{@sources}".yellow
@@ -349,6 +375,8 @@ module Agric
           f.write ".icon-#{name}:before { content: $agric-icons-#{name} };\n"
         end
       end
+
+      update_readme!(icons)
 
       puts 'Finished!'.green
     end
