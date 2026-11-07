@@ -1,0 +1,248 @@
+[
+ {
+  "name": "potato",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/russet-potato/russet-potato.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "tomato",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/tomato/tomato.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "barley",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/barley/barley.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "sugar-beet",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/beet/beet.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "soybean",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/soy-bean/soy-bean.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "strawberry",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/strawberry/strawberry.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "rye",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/rye/rye.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "oat",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/oat/oat.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "rice",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/rice/rice.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "sorghum",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/sorghum-millet/sorghum-millet.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "cotton",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/cotton/cotton.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "hop",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/hop/hop.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "sugar-cane",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/sugar-cane/sugar-cane.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "peanut",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/peanut/peanut.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "garlic",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/garlic/garlic.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "leek",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/leek/leek.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "onion",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/yellow-onion/yellow-onion.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "pumpkin",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/pumpkin/pumpkin.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "lettuce",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/loose-leaf-lettuce/loose-leaf-lettuce.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "cabbage",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/green-cabbage/green-cabbage.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "pea",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/snap-pea/snap-pea.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "faba-bean",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/broad-bean/broad-bean.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "lavender",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/lavender/lavender.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "hemp",
+  "url": "https://raw.githubusercontent.com/openfarmcc/open-crop-icons/d41f1197a14bb82f12037dc47585152ae1e3074f/icons/hemp/hemp.svg",
+  "source": "open-crop-icons",
+  "license": "CC0-1.0",
+  "mode": "trace"
+ },
+ {
+  "name": "syringe",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/devices/syringe.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "drone",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/vehicles/drone.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "virus",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/symbols/virus.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "thermometer",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/devices/thermometer.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "forest",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/places/forest.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "mosquito",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/zoonoses/mosquito.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "tick",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/zoonoses/animal-tick.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "farmer",
+  "url": "https://raw.githubusercontent.com/resolvetosavelives/healthicons/2080c1b40e4829f2f4217e03bc22908b4e402f6b/public/icons/svg/filled/people/agriculture-worker.svg",
+  "source": "healthicons",
+  "license": "CC0-1.0"
+ },
+ {
+  "name": "hail",
+  "url": "https://raw.githubusercontent.com/lucide-icons/lucide/1.70.0/icons/cloud-hail.svg",
+  "source": "lucide",
+  "license": "ISC"
+ },
+ {
+  "name": "humidity",
+  "url": "https://raw.githubusercontent.com/lucide-icons/lucide/1.70.0/icons/droplets.svg",
+  "source": "lucide",
+  "license": "ISC"
+ },
+ {
+  "name": "worm",
+  "url": "https://raw.githubusercontent.com/lucide-icons/lucide/1.70.0/icons/worm.svg",
+  "source": "lucide",
+  "license": "ISC"
+ },
+ {
+  "name": "thermometer-sun",
+  "url": "https://raw.githubusercontent.com/lucide-icons/lucide/1.70.0/icons/thermometer-sun.svg",
+  "source": "lucide",
+  "license": "ISC"
+ },
+ {
+  "name": "thermometer-snowflake",
+  "url": "https://raw.githubusercontent.com/lucide-icons/lucide/1.70.0/icons/thermometer-snowflake.svg",
+  "source": "lucide",
+  "license": "ISC"
+ }
+]

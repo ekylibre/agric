@@ -32,4 +32,12 @@
   allowed licenses).
 - `npm run import`: imports icons from open icon sets (Lucide, Healthicons, Open
   Crop Icons), including stroke-based and multi-colour ones.
+- 37 new icons:
+  - crops (Open Crop Icons, CC0): barley, cabbage, cotton, faba-bean, garlic, hemp,
+    hop, lavender, leek, lettuce, oat, onion, pea, peanut, potato, pumpkin, rice, rye,
+    sorghum, soybean, strawberry, sugar-beet, sugar-cane, tomato;
+  - health and pests (Healthicons, CC0): drone, farmer, forest, mosquito, syringe,
+    thermometer, tick, virus;
+  - weather and soil (Lucide, ISC): hail, humidity, thermometer-snowflake,
+    thermometer-sun, worm.
 - GitHub Actions CI replaces Travis CI.
