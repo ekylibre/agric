@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  icons:
+    name: Icons (validate + build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Fails if manifest.json/glyphs are inconsistent or if the committed fonts and
+      # stylesheets in app/assets are not up to date with the sources.
+      - run: npm run check
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agric-dist
+          path: dist
+
+  gem:
+    name: Gem (Rails engine)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.10' # Rails 8.1 + Propshaft + dartsass-rails (see Gemfile)
+          bundler-cache: true
+      - run: bundle exec rake test

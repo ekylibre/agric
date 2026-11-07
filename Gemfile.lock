@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    agric (4.1.0)
+    agric (5.0.0)
       railties (>= 3.2, < 9)
 
 GEM

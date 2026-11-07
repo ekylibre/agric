@@ -6,7 +6,7 @@ class AgricRailsTest < ActionDispatch::IntegrationTest
   end
 
   test 'fonts are served' do
-    %w[agric.woff2 agric.woff agric.ttf agric.svg].each do |file|
+    %w[agric.woff2 agric.woff agric.ttf].each do |file|
       get digested_path(file)
       assert_response :success, "expected #{file} to be served"
     end
@@ -24,7 +24,8 @@ class AgricRailsTest < ActionDispatch::IntegrationTest
     assert_match(%r{/assets/agric-[a-z0-9]+\.woff2}, response.body)
     assert_match(%r{/assets/agric-[a-z0-9]+\.woff}, response.body)
     assert_match(%r{/assets/agric-[a-z0-9]+\.ttf}, response.body)
-    assert_match(%r{/assets/agric-[a-z0-9]+\.svg}, response.body)
+    # EOT and SVG fonts are no longer shipped (5.0.0)
+    assert_no_match(/agric[-.][^'")]*\.(eot|svg)/, response.body)
     # no sprockets helper must leak into compiled output
     assert_no_match(/font-url/, response.body)
   end

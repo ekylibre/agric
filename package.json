@@ -1,10 +1,53 @@
 {
-  "dependencies": {
-    "svg-font-create": "^0.0.5",
-    "svg-font-dump": "^0.1.0",
-    "svgicons2svgfont": "^10.0.3"
+  "name": "@ekylibre/agric",
+  "version": "5.0.0",
+  "description": "Agriculture-oriented icon set: web font (WOFF2/WOFF/TTF), SVG, SVG sprite, PNG, Android VectorDrawable and iOS asset catalog",
+  "license": "MIT",
+  "homepage": "https://github.com/ekylibre/agric",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekylibre/agric.git"
   },
-  "resolutions": {
-    "svgo": "2.3.0"
+  "type": "module",
+  "files": [
+    "dist",
+    "manifest.json",
+    "LICENSE.txt",
+    "README.md"
+  ],
+  "main": "dist/agric.json",
+  "style": "dist/css/agric.css",
+  "exports": {
+    ".": "./dist/agric.json",
+    "./css": "./dist/css/agric.css",
+    "./scss": "./dist/scss/agric.scss",
+    "./sprite.svg": "./dist/sprite/agric.svg",
+    "./svg/*": "./dist/svg/*",
+    "./fonts/*": "./dist/fonts/*",
+    "./manifest.json": "./manifest.json",
+    "./react-native": "./dist/react-native/agric.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/validate.mjs && node scripts/build.mjs",
+    "build:fonts": "node scripts/validate.mjs && node scripts/build.mjs --only=fonts",
+    "import": "node scripts/import.mjs",
+    "prepublishOnly": "npm run build",
+    "check": "node scripts/validate.mjs && node scripts/build.mjs --only=fonts && git diff --exit-code -- app/assets README.md"
+  },
+  "devDependencies": {
+    "potrace": "^2.1.8",
+    "sass": "^1.108.1",
+    "sharp": "^0.35.5",
+    "svg2ttf": "^6.1.0",
+    "svg2vectordrawable": "^2.9.1",
+    "svgicons2svgfont": "^16.0.0",
+    "svgo": "^4.1.0",
+    "svgpath": "^2.6.0",
+    "ttf2woff": "^3.0.0",
+    "ttf2woff2": "^8.0.1"
   }
 }
