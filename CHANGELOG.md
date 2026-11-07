@@ -41,3 +41,11 @@
   - weather and soil (Lucide, ISC): hail, humidity, thermometer-snowflake,
     thermometer-sun, worm.
 - GitHub Actions CI replaces Travis CI.
+
+### Gem dependencies
+
+- `railties` is now required `>= 5.2, < 9` (was `>= 3.2, < 6`). Only Rails 8.1 is
+  tested in CI.
+- No more SCSS compiler dependency (`sassc-rails` was required): apps provide
+  `sassc-rails`, `dartsass-rails` or their own Sass build. The generated SCSS uses
+  plain relative `url()`, so it works with both Sprockets and Propshaft.
