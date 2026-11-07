@@ -1,6 +1,11 @@
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
+# Propshaft computes its asset paths at boot and skips missing directories, so
+# app/assets/builds must exist before the app boots (clean checkouts, CI).
+require 'fileutils'
+FileUtils.mkdir_p(File.expand_path('../dummy/app/assets/builds', __FILE__))
+
 require File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rails/test_help'
 
