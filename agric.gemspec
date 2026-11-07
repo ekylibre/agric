@@ -21,7 +21,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", ">= 2.2.10"
   spec.add_development_dependency 'rake'
 
-  spec.add_dependency 'railties', '>= 3.2', '< 9'
+  # 5.2 is the oldest Rails this SCSS (plain url(), no sprockets helpers) is
+  # expected to work with; only Rails 8.1 is tested in CI.
+  spec.add_dependency 'railties', '>= 5.2', '< 9'
   # NOTE: no SCSS compiler dependency on purpose.
   # - sprockets era: apps provide sassc-rails (or dartsass-rails)
   # - Rails 7.1+/8.x era (propshaft, cssbundling, dartsass): apps compile
