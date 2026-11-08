@@ -485,6 +485,12 @@ override its path).
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+## Isometric illustrations
+
+`illustrations/isometric/` holds colour SVG illustrations from the Ekylibre SAS graphic
+archive (an isometric farm kit, logos, pictograms). They are not part of the font, the
+gem or the npm package. See [illustrations/isometric/README.md](illustrations/isometric/README.md).
+
 ## License
 
 MIT. Imported icons keep their original license (see `manifest.json`).
