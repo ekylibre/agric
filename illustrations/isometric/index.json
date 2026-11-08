@@ -1,0 +1,798 @@
+{
+  "kit": [
+    {
+      "id": "satellite",
+      "category": "objets",
+      "title": {
+        "fr": "Satellite",
+        "en": "Satellite"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/objets/satellite.svg",
+      "viewBox": [
+        4517,
+        1200,
+        783,
+        773
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 37,
+      "bytes": 24687,
+      "gzipBytes": 4289
+    },
+    {
+      "id": "micro-smartphone",
+      "category": "objets",
+      "title": {
+        "fr": "Micro et smartphone",
+        "en": "Microphone and smartphone"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/objets/micro-smartphone.svg",
+      "viewBox": [
+        7110,
+        2350,
+        753,
+        752
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 373,
+      "bytes": 78450,
+      "gzipBytes": 21387
+    },
+    {
+      "id": "tracteur-bleu",
+      "category": "machines",
+      "title": {
+        "fr": "Tracteur",
+        "en": "Tractor"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/machines/tracteur-bleu.svg",
+      "viewBox": [
+        1617,
+        2350,
+        753,
+        752
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 245,
+      "bytes": 27247,
+      "gzipBytes": 8169
+    },
+    {
+      "id": "raisin-vin",
+      "category": "cultures",
+      "title": {
+        "fr": "Raisin et vin",
+        "en": "Grapes and wine"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/cultures/raisin-vin.svg",
+      "viewBox": [
+        5864,
+        2350,
+        753,
+        752
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 253,
+      "bytes": 181183,
+      "gzipBytes": 27947
+    },
+    {
+      "id": "balance-calculatrice",
+      "category": "objets",
+      "title": {
+        "fr": "Balance et calculatrice",
+        "en": "Scales and calculator"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/objets/balance-calculatrice.svg",
+      "viewBox": [
+        6363,
+        7375,
+        752,
+        753
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 250,
+      "bytes": 80608,
+      "gzipBytes": 12677
+    },
+    {
+      "id": "camembert",
+      "category": "objets",
+      "title": {
+        "fr": "Graphique",
+        "en": "Pie chart"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/objets/camembert.svg",
+      "viewBox": [
+        6434,
+        1200,
+        768,
+        773
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 14,
+      "bytes": 4196,
+      "gzipBytes": 1739
+    },
+    {
+      "id": "hangar-photovoltaique",
+      "category": "batiments",
+      "title": {
+        "fr": "Hangar à panneaux solaires",
+        "en": "Solar-roofed shed"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/batiments/hangar-photovoltaique.svg",
+      "viewBox": [
+        2645,
+        3357,
+        1882,
+        1627
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 5472,
+      "bytes": 578163,
+      "gzipBytes": 98132
+    },
+    {
+      "id": "silos",
+      "category": "batiments",
+      "title": {
+        "fr": "Silos",
+        "en": "Silos"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/batiments/silos.svg",
+      "viewBox": [
+        1246,
+        4043,
+        814,
+        1374
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 3220,
+      "bytes": 214289,
+      "gzipBytes": 39016
+    },
+    {
+      "id": "chai",
+      "category": "batiments",
+      "title": {
+        "fr": "Chai en coupe",
+        "en": "Winery cutaway"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/batiments/chai.svg",
+      "viewBox": [
+        5086,
+        3052,
+        2289,
+        1831
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 15378,
+      "bytes": 6162541,
+      "gzipBytes": 637153
+    },
+    {
+      "id": "maison-bureau",
+      "category": "batiments",
+      "title": {
+        "fr": "Maison et bureau en coupe",
+        "en": "House and office cutaway"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/batiments/maison-bureau.svg",
+      "viewBox": [
+        6459,
+        4552,
+        1399,
+        1297
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 3277,
+      "bytes": 423241,
+      "gzipBytes": 88239
+    },
+    {
+      "id": "serre",
+      "category": "batiments",
+      "title": {
+        "fr": "Serre",
+        "en": "Greenhouse"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/batiments/serre.svg",
+      "viewBox": [
+        6993,
+        5798,
+        509,
+        534
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 621,
+      "bytes": 100796,
+      "gzipBytes": 20428
+    },
+    {
+      "id": "eolienne-pompage",
+      "category": "batiments",
+      "title": {
+        "fr": "Éolienne de pompage",
+        "en": "Wind pump"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/batiments/eolienne-pompage.svg",
+      "viewBox": [
+        8010,
+        3967,
+        461,
+        1043
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 104,
+      "bytes": 32691,
+      "gzipBytes": 5799
+    },
+    {
+      "id": "agriculteur-tablette",
+      "category": "personnages",
+      "title": {
+        "fr": "Agriculteur à la tablette",
+        "en": "Farmer with a tablet"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/personnages/agriculteur-tablette.svg",
+      "viewBox": [
+        4135,
+        4675,
+        120,
+        320
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 23,
+      "bytes": 3318,
+      "gzipBytes": 1476
+    },
+    {
+      "id": "vache",
+      "category": "animaux",
+      "title": {
+        "fr": "Vache",
+        "en": "Cow"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/animaux/vache.svg",
+      "viewBox": [
+        4501,
+        6256,
+        382,
+        330
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 49,
+      "bytes": 8673,
+      "gzipBytes": 3400
+    },
+    {
+      "id": "pickup",
+      "category": "machines",
+      "title": {
+        "fr": "Pick-up",
+        "en": "Pickup truck"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/machines/pickup.svg",
+      "viewBox": [
+        5086,
+        4755,
+        483,
+        280
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 234,
+      "bytes": 78178,
+      "gzipBytes": 12076
+    },
+    {
+      "id": "ruches",
+      "category": "animaux",
+      "title": {
+        "fr": "Ruches",
+        "en": "Beehives"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/animaux/ruches.svg",
+      "viewBox": [
+        3942,
+        6612,
+        712,
+        432
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 1758,
+      "bytes": 669185,
+      "gzipBytes": 59670
+    },
+    {
+      "id": "soleil-nuage",
+      "category": "capteurs",
+      "title": {
+        "fr": "Météo",
+        "en": "Weather"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/capteurs/soleil-nuage.svg",
+      "viewBox": [
+        2034,
+        3128,
+        611,
+        458
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 52,
+      "bytes": 5879,
+      "gzipBytes": 2445
+    },
+    {
+      "id": "eoliennes",
+      "category": "batiments",
+      "title": {
+        "fr": "Éoliennes",
+        "en": "Wind turbines"
+      },
+      "source": "Isometric-full.ai",
+      "file": "kit/batiments/eoliennes.svg",
+      "viewBox": [
+        2721,
+        2874,
+        788,
+        1042
+      ],
+      "foot": [
+        0.5,
+        1
+      ],
+      "objects": 393,
+      "bytes": 73617,
+      "gzipBytes": 15248
+    }
+  ],
+  "sources": [
+    {
+      "file": "sources/charte/logos/logo-ekylibre/cmjn/ekylibre_black_cmjn.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/CMJN/ekylibre_black_CMJN.svg",
+      "bytes": 1047,
+      "gzipBytes": 581
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/cmjn/ekylibre_white_cmjn.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/CMJN/ekylibre_white_CMJN.svg",
+      "bytes": 1044,
+      "gzipBytes": 580
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/cmjn/hibou_black_cmjn.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/CMJN/hibou_black_CMJN.svg",
+      "bytes": 1348,
+      "gzipBytes": 565
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/cmjn/hibou_white_cmjn.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/CMJN/hibou_white_CMJN.svg",
+      "bytes": 1345,
+      "gzipBytes": 564
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/cmjn/logo_black_cmjn.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/CMJN/logo_black_CMJN.svg",
+      "bytes": 2231,
+      "gzipBytes": 993
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/cmjn/logo_white_cmjn.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/CMJN/logo_white_CMJN.svg",
+      "bytes": 2228,
+      "gzipBytes": 991
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/cmjn/logos_cmjn.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/CMJN/logos_CMJN.ai",
+      "bytes": 2242,
+      "gzipBytes": 1088
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/rvb/ekylibre_black_rvb.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/RVB/ekylibre_black_RVB.svg",
+      "bytes": 1032,
+      "gzipBytes": 568
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/rvb/ekylibre_white_rvb.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/RVB/ekylibre_white_rvb.svg",
+      "bytes": 1044,
+      "gzipBytes": 580
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/rvb/hibou_black_rvb.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/RVB/hibou_black_RVB.svg",
+      "bytes": 1339,
+      "gzipBytes": 562
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/rvb/hibou_white_rvb.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/RVB/hibou_white_RVB.svg",
+      "bytes": 1345,
+      "gzipBytes": 564
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/rvb/logo_black_rvb.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/RVB/logo_black_RVB.svg",
+      "bytes": 2216,
+      "gzipBytes": 984
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/rvb/logo_white_rvb.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/RVB/logo_white_RVB.svg",
+      "bytes": 2228,
+      "gzipBytes": 991
+    },
+    {
+      "file": "sources/charte/logos/logo-ekylibre/rvb/logos_rvb.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logo Ekylibre/RVB/logos_RVB.ai",
+      "bytes": 2197,
+      "gzipBytes": 1072
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo-ronds/logo_rond_ekyagri.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/Logo Ronds/logo_rond_ekyagri.svg",
+      "bytes": 1401,
+      "gzipBytes": 748
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo-ronds/logo_rond_ekyagri_gestion.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/Logo Ronds/logo_rond_ekyagri_gestion.svg",
+      "bytes": 1323,
+      "gzipBytes": 709
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo-ronds/logo_rond_ekyagri_pef.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/Logo Ronds/logo_rond_ekyagri_pef.svg",
+      "bytes": 1502,
+      "gzipBytes": 783
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo-ronds/logo_rond_ekyviti.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/Logo Ronds/logo_rond_ekyviti.svg",
+      "bytes": 1032,
+      "gzipBytes": 575
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo-ronds/logo_rond_ekyviti_gestion.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/Logo Ronds/logo_rond_ekyviti_gestion.svg",
+      "bytes": 1062,
+      "gzipBytes": 570
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo-ronds/logo_rond_ekyviti_perf.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/Logo Ronds/logo_rond_ekyviti_perf.svg",
+      "bytes": 1203,
+      "gzipBytes": 635
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo_clicandfarm.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/logo_clicandfarm.svg",
+      "bytes": 1823,
+      "gzipBytes": 922
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo_ekyagri.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/logo_ekyagri.svg",
+      "bytes": 1567,
+      "gzipBytes": 843
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo_ekyagri_gestion.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/logo_ekyagri_gestion.svg",
+      "bytes": 1541,
+      "gzipBytes": 815
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo_ekyagri_perf.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/logo_ekyagri_perf.svg",
+      "bytes": 1732,
+      "gzipBytes": 882
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo_ekyviti.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/logo_ekyviti.svg",
+      "bytes": 1077,
+      "gzipBytes": 618
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo_ekyviti_gestion.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/logo_ekyviti_gestion.svg",
+      "bytes": 1008,
+      "gzipBytes": 575
+    },
+    {
+      "file": "sources/charte/logos/logos-offres/exports/logo_ekyviti_perf.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Logos Offres/Exports/logo_ekyviti_perf.svg",
+      "bytes": 1167,
+      "gzipBytes": 639
+    },
+    {
+      "file": "sources/charte/logos/pictos-charte/arrow.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Pictos Charte/arrow.ai",
+      "bytes": 462,
+      "gzipBytes": 312
+    },
+    {
+      "file": "sources/charte/logos/pictos-charte/plus.svg",
+      "source": "Charte 2021/Charte graphique Ekylibre/Logos/Pictos Charte/plus.ai",
+      "bytes": 151,
+      "gzipBytes": 143
+    },
+    {
+      "file": "sources/charte/logos-offres-rvb.svg",
+      "source": "Charte 2021/logos-offres-rvb.ai",
+      "bytes": 8631,
+      "gzipBytes": 2448
+    },
+    {
+      "file": "sources/clic-and-farm/logo-inverted.svg",
+      "source": "Clic&Farm/logo-inverted.ai",
+      "bytes": 6585,
+      "gzipBytes": 2857
+    },
+    {
+      "file": "sources/clic-and-farm/logo.svg",
+      "source": "Clic&Farm/logo.ai",
+      "bytes": 6584,
+      "gzipBytes": 2870
+    },
+    {
+      "file": "sources/cochon.svg",
+      "source": "cochon.ai",
+      "bytes": 37235,
+      "gzipBytes": 11405
+    },
+    {
+      "file": "sources/comptabilite.svg",
+      "source": "comptabilite.ai",
+      "bytes": 82359,
+      "gzipBytes": 19786
+    },
+    {
+      "file": "sources/ekylibre-horizontal.svg",
+      "source": "ekylibre-horizontal.ai",
+      "bytes": 7627,
+      "gzipBytes": 3298
+    },
+    {
+      "file": "sources/ekylibre.svg",
+      "source": "ekylibre.svg",
+      "bytes": 6501,
+      "gzipBytes": 2719
+    },
+    {
+      "file": "sources/ekylibre_vertical_cmjn.svg",
+      "source": "ekylibre_vertical_cmjn.ai",
+      "bytes": 6846,
+      "gzipBytes": 2830
+    },
+    {
+      "file": "sources/equipements.svg",
+      "source": "equipements.ai",
+      "bytes": 63613,
+      "gzipBytes": 13385
+    },
+    {
+      "file": "sources/equipements2.svg",
+      "source": "equipements2.ai",
+      "bytes": 58256,
+      "gzipBytes": 12120
+    },
+    {
+      "file": "sources/equipements3.svg",
+      "source": "equipements3.ai",
+      "bytes": 62839,
+      "gzipBytes": 13264
+    },
+    {
+      "file": "sources/exploitation.svg",
+      "source": "exploitation.ai",
+      "bytes": 41756,
+      "gzipBytes": 10164
+    },
+    {
+      "file": "sources/favicon.svg",
+      "source": "favicon.svg",
+      "bytes": 2091,
+      "gzipBytes": 927
+    },
+    {
+      "file": "sources/formation.svg",
+      "source": "formation.ai",
+      "bytes": 30142,
+      "gzipBytes": 9616
+    },
+    {
+      "file": "sources/icones-ekyviti/esca.svg",
+      "source": "icônes-ekyviti/esca.svg",
+      "bytes": 1441,
+      "gzipBytes": 719
+    },
+    {
+      "file": "sources/icones-ekyviti/fil-casse.svg",
+      "source": "icônes-ekyviti/fil-cassé.svg",
+      "bytes": 1208,
+      "gzipBytes": 689
+    },
+    {
+      "file": "sources/icones-ekyviti/flavescence.svg",
+      "source": "icônes-ekyviti/flavescence.svg",
+      "bytes": 3662,
+      "gzipBytes": 1747
+    },
+    {
+      "file": "sources/icones-ekyviti/grappe.svg",
+      "source": "icônes-ekyviti/grappe.svg",
+      "bytes": 1041,
+      "gzipBytes": 484
+    },
+    {
+      "file": "sources/icones-ekyviti/marcottage-mort.svg",
+      "source": "icônes-ekyviti/marcottage-mort.svg",
+      "bytes": 2025,
+      "gzipBytes": 1014
+    },
+    {
+      "file": "sources/icones-ekyviti/mouillere.svg",
+      "source": "icônes-ekyviti/mouillère.svg",
+      "bytes": 5369,
+      "gzipBytes": 2461
+    },
+    {
+      "file": "sources/icones-ekyviti/pied-manquant.svg",
+      "source": "icônes-ekyviti/pied-manquant.svg",
+      "bytes": 377,
+      "gzipBytes": 251
+    },
+    {
+      "file": "sources/icones-ekyviti/pied-mort.svg",
+      "source": "icônes-ekyviti/pied-mort.svg",
+      "bytes": 1820,
+      "gzipBytes": 899
+    },
+    {
+      "file": "sources/icones-ekyviti/piquet-casse.svg",
+      "source": "icônes-ekyviti/piquet-cassé.svg",
+      "bytes": 539,
+      "gzipBytes": 370
+    },
+    {
+      "file": "sources/ift-000000.svg",
+      "source": "ift#000000.svg",
+      "bytes": 752,
+      "gzipBytes": 397
+    },
+    {
+      "file": "sources/ift-333333.svg",
+      "source": "ift#333333.svg",
+      "bytes": 764,
+      "gzipBytes": 409
+    },
+    {
+      "file": "sources/imports-carre.svg",
+      "source": "imports-carré.ai",
+      "bytes": 17541,
+      "gzipBytes": 4472
+    },
+    {
+      "file": "sources/imports.svg",
+      "source": "imports.ai",
+      "bytes": 43046,
+      "gzipBytes": 9734
+    },
+    {
+      "file": "sources/logo-appli.svg",
+      "source": "logo-appli.svg",
+      "bytes": 1780,
+      "gzipBytes": 864
+    },
+    {
+      "file": "sources/main-duke.svg",
+      "source": "main-duke.ai",
+      "bytes": 6907,
+      "gzipBytes": 2202
+    },
+    {
+      "file": "sources/maintenance.svg",
+      "source": "maintenance.ai",
+      "bytes": 39181,
+      "gzipBytes": 7035
+    },
+    {
+      "file": "sources/moissoneuse.svg",
+      "source": "moissoneuse.ai",
+      "bytes": 13268,
+      "gzipBytes": 3022
+    },
+    {
+      "file": "sources/personnel.svg",
+      "source": "personnel.ai",
+      "bytes": 130858,
+      "gzipBytes": 26049
+    },
+    {
+      "file": "sources/pig.svg",
+      "source": "pig.ai",
+      "bytes": 11183,
+      "gzipBytes": 4363
+    },
+    {
+      "file": "sources/serre.svg",
+      "source": "serre.ai",
+      "bytes": 293504,
+      "gzipBytes": 157002
+    }
+  ]
+}

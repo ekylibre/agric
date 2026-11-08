@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `illustrations/isometric/`: colour illustrations from the Ekylibre SAS graphic
+  archive, as plain SVG: an 18-element isometric farm kit and 63 logos, pictograms
+  and illustrations, with `index.json`. Not part of the font, the gem or the npm
+  package. See `illustrations/isometric/README.md`.
+
 ## 5.0.0
 
 ### Breaking changes
